@@ -6,12 +6,9 @@ import {
   IsDate,
   IsNumber,
   IsEmail,
-  IsMongoId,
 } from 'class-validator';
+import { User } from 'src/models/users/schema/user.schema';
 class CreateProfileDto {
-  @IsOptional()
-  userId: any;
-
   @IsString()
   name: string;
 
@@ -29,10 +26,6 @@ class CreateProfileDto {
   @IsOptional()
   profileAvatar: string;
 
-  @IsUrl()
-  @IsOptional()
-  companyAvatar: string;
-
   @IsNumber()
   whatsAppNumber: number;
 
@@ -42,11 +35,11 @@ class CreateProfileDto {
   @IsEmail()
   email: string;
 
-  @IsUrl()
-  linkedinUrl: string;
+  @IsString()
+  password: string;
 
   @IsUrl()
-  websiteUrl: string;
+  linkedinUrl: string;
 
   @IsBoolean()
   @IsOptional()
@@ -59,6 +52,9 @@ class CreateProfileDto {
   @IsDate()
   @IsOptional()
   updatedAt: Date;
+
+  @IsOptional()
+  user: User;
 }
 
 export { CreateProfileDto };

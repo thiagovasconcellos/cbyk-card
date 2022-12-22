@@ -10,12 +10,7 @@ export class ProfilesController {
   constructor(private readonly profilesService: ProfilesService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
-  async create(
-    @AuthUser() user: any,
-    @Body() createProfileDto: CreateProfileDto,
-  ) {
-    createProfileDto.userId = user.userId;
+  async create(@Body() createProfileDto: CreateProfileDto) {
     return this.profilesService.create(createProfileDto);
   }
 

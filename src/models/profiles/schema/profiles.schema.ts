@@ -1,14 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ObjectId } from 'mongodb';
 import { HydratedDocument } from 'mongoose';
+import { User } from 'src/models/users/schema/user.schema';
 
 export type ProfileDocument = HydratedDocument<Profile>;
 
 @Schema()
 export class Profile {
-  @Prop({ type: ObjectId })
-  userId: string;
-
   @Prop()
   name: string;
 
@@ -37,9 +34,6 @@ export class Profile {
   linkedinUrl: string;
 
   @Prop()
-  websiteUrl: string;
-
-  @Prop()
   isActive: boolean;
 
   @Prop()
@@ -47,6 +41,8 @@ export class Profile {
 
   @Prop()
   updatedAt: Date;
+
+  user: User;
 }
 
 export const ProfileSchema = SchemaFactory.createForClass(Profile);
