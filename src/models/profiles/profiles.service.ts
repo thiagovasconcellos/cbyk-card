@@ -1,11 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { BadRequestException } from '@nestjs/common/exceptions';
+import {
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, ObjectId } from 'mongoose';
+import { Model } from 'mongoose';
 
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile, ProfileDocument } from './schema/profiles.schema';
 import { User, UserDocument } from '../users/schema/user.schema';
+import { UpdateProfileDto } from './dto/update-profile.dto';
+import { ObjectID } from 'bson';
 
 @Injectable()
 export class ProfilesService {
@@ -41,16 +46,28 @@ export class ProfilesService {
   }
 
   async findProfileByEmail(email: string): Promise<Profile | undefined> {
-    const profile = await this.profileModel.findOne({
-      where: {
-        email,
-      },
-    });
+    const profile = await this.profileModel
+      .findOne({
+        email: email,
+      })
+      .exec();
     return profile;
   }
 
-  async findProfileByUserId(userId: ObjectId): Promise<Profile | undefined> {
-    const profile = await this.profileModel.findOne(userId);
+  async findProfileByUserId(profileId: string): Promise<Profile | undefined> {
+    const objectId = new ObjectID(profileId);
+    const profile = await this.profileModel.findOne(objectId);
     return profile;
+  }
+
+  async update(profileId: string, profile: UpdateProfileDto): Promise<boolean> {
+    const updateProfile = await this.profileModel.findByIdAndUpdate(
+      profileId,
+      profile,
+    );
+    if (!updateProfile) {
+      throw new NotFoundException();
+    }
+    return true;
   }
 }
