@@ -11,8 +11,6 @@ import { ProfilesService } from './profiles.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile } from './schema/profiles.schema';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
-import { AuthUser } from 'src/common/decorators/metadata/user.decorator';
-import { ObjectId } from 'mongoose';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Controller('profiles')
