@@ -27,9 +27,11 @@ class CreateProfileDto {
   profileAvatar: string;
 
   @IsNumber()
+  @IsOptional()
   whatsAppNumber: number;
 
   @IsNumber()
+  @IsOptional()
   mobileNumber: number;
 
   @IsEmail()
@@ -39,6 +41,7 @@ class CreateProfileDto {
   password: string;
 
   @IsUrl()
+  @IsOptional()
   linkedinUrl: string;
 
   @IsBoolean()
