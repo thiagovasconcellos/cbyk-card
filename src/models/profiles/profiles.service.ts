@@ -22,11 +22,11 @@ export class ProfilesService {
   ) {}
 
   async create(profile: CreateProfileDto): Promise<Profile> {
-    const profileExists = await this.profileModel.findOne({
-      where: {
-        email: profile.email,
-      },
-    });
+    const profileExists = await this.profileModel
+      .findOne({
+        email: email,
+      })
+      .exec();
     if (profileExists && profileExists.email === profile.email) {
       throw new BadRequestException('Profile with given email already exists');
     }
