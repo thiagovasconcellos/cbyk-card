@@ -36,6 +36,10 @@ export class UserService {
       })
       .exec();
 
+    if (!user || user.email !== email) {
+      throw new BadRequestException('Invalid credentials');
+    }
+
     return user;
   }
 
