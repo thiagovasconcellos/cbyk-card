@@ -19,12 +19,12 @@ export class ProfilesService {
     private profileModel: Model<ProfileDocument>,
     @InjectModel(User.name)
     private userModel: Model<UserDocument>,
-  ) {}
+  ) { }
 
   async create(profile: CreateProfileDto): Promise<Profile> {
     const profileExists = await this.profileModel
       .findOne({
-        email: email,
+        email: profile.email,
       })
       .exec();
     if (profileExists && profileExists.email === profile.email) {
