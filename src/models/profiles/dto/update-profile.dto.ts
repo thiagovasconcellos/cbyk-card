@@ -25,23 +25,18 @@ class UpdateProfileDto {
   @IsOptional()
   companyName: string;
 
-  @IsUrl()
   @IsOptional()
   profileAvatar: string;
 
-  @IsNumber()
   @IsOptional()
   whatsAppNumber: number;
 
-  @IsNumber()
   @IsOptional()
   mobileNumber: number;
 
-  @IsEmail()
   @IsOptional()
   email: string;
 
-  @IsUrl()
   @IsOptional()
   linkedinUrl: string;
 
