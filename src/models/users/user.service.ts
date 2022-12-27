@@ -31,17 +31,10 @@ export class UserService {
 
   async findUserByEmail(email: string): Promise<User | undefined> {
     const user = await this.userModel.findOne({
-      select: {
-        _id: true,
-        code: true,
-        email: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      where: {
-        email,
-      },
-    });
+      .findOne({
+        email: email,
+      })
+      .exec();
     return user;
   }
 
