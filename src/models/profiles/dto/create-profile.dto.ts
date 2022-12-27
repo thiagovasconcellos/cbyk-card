@@ -1,6 +1,5 @@
 import {
   IsString,
-  IsUrl,
   IsOptional,
   IsBoolean,
   IsDate,
@@ -22,7 +21,6 @@ class CreateProfileDto {
   @IsOptional()
   companyName: string;
 
-  @IsUrl()
   @IsOptional()
   profileAvatar: string;
 
