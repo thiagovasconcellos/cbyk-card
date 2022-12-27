@@ -40,7 +40,6 @@ class CreateProfileDto {
   @IsString()
   password: string;
 
-  @IsUrl()
   @IsOptional()
   linkedinUrl: string;
 
